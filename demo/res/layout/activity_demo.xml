@@ -12,79 +12,101 @@
         android:gravity="bottom"
         sothree:umanoPanelHeight="68dp"
         sothree:umanoShadowHeight="4dp"
-        sothree:umanoParalaxOffset="100dp"
+        sothree:umanoParalaxOffset="0dp"
         sothree:umanoDragView="@+id/dragView">
 
         <!-- MAIN CONTENT -->
         <FrameLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#ff0000">
-            <android.support.v7.widget.Toolbar
-                xmlns:sothree="http://schemas.android.com/apk/res-auto"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/main_toolbar"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                sothree:theme="@style/ActionBar"
-                android:layout_width="match_parent"/>
-            <TextView
-                android:id="@+id/main"
+            android:layout_height="match_parent">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="?attr/actionBarSize"
-                android:gravity="center"
-                android:text="Main Content"
-                android:clickable="true"
-                android:focusable="false"
-                android:focusableInTouchMode="true"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#ff0000">
+                <android.support.v7.widget.Toolbar
+                    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/main_toolbar"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    sothree:theme="@style/ActionBar"
+                    android:layout_width="match_parent"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:layout_alignParentBottom="true"/>
+                </RelativeLayout>
+            </LinearLayout>
         </FrameLayout>
 
         <!-- SLIDING LAYOUT -->
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/sliding"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#55eeeeee"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="false"
-            android:id="@+id/dragView">
-
-            <LinearLayout
+            android:layout_height="match_parent">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:background="#55eeeeee"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="false"
+                android:id="@+id/dragView">
 
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:textSize="14sp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"/>
+                <android.support.v7.widget.Toolbar
+                    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/submain_toolbar"
+                    android:layout_height="68dp"
+                    android:background="?attr/colorPrimary"
+                    sothree:theme="@style/ActionBar"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"/>
 
-                <Button
-                    android:id="@+id/follow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="14sp"
-                    android:gravity="center_vertical|right"
-                    android:paddingRight="10dp"
-                    android:paddingLeft="10dp"/>
+                <LinearLayout
+                    android:id="@+id/miniLayout"
+                    android:background="@android:color/white"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="68dp"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"/>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scaleType="fitStart"
-                android:src="@drawable/graphic" >
-            </ImageView>
-        </LinearLayout>
+                    <Button
+                        android:id="@+id/follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"/>
+
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/submain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/miniLayout"
+                    />
+            </RelativeLayout>
+        </FrameLayout>
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
 </RelativeLayout>

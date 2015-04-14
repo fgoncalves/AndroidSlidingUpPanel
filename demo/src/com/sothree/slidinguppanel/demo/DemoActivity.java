@@ -12,7 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -23,6 +26,7 @@ public class DemoActivity extends ActionBarActivity {
     private static final String TAG = "DemoActivity";
 
     private SlidingUpPanelLayout mLayout;
+    private View miniLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +35,22 @@ public class DemoActivity extends ActionBarActivity {
 
         setSupportActionBar((Toolbar)findViewById(R.id.main_toolbar));
 
-
+        miniLayout = findViewById(R.id.miniLayout);
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mLayout.setPanelSlideListener(new PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
                 Log.i(TAG, "onPanelSlide, offset " + slideOffset);
+                miniLayout.setAlpha(1.0f - slideOffset);
+                if (slideOffset == 1.0f)
+                    miniLayout.setVisibility(View.INVISIBLE);
+                else
+                    miniLayout.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onPanelExpanded(View panel) {
                 Log.i(TAG, "onPanelExpanded");
-
             }
 
             @Override
@@ -62,16 +70,8 @@ public class DemoActivity extends ActionBarActivity {
             }
         });
 
-        TextView t = (TextView) findViewById(R.id.main);
-        t.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mLayout.setPanelState(PanelState.COLLAPSED);
-            }
-        });
-
-        t = (TextView) findViewById(R.id.name);
-        t.setText(Html.fromHtml(getString(R.string.hello)));
+        TextView tv = (TextView) findViewById(R.id.name);
+        tv.setText(Html.fromHtml(getString(R.string.hello)));
         Button f = (Button) findViewById(R.id.follow);
         f.setText(Html.fromHtml(getString(R.string.follow)));
         f.setMovementMethod(LinkMovementMethod.getInstance());
@@ -83,6 +83,39 @@ public class DemoActivity extends ActionBarActivity {
                 startActivity(i);
             }
         });
+
+        ListView t = (ListView) findViewById(R.id.submain);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.textview, new String[] {
+                "Ajaeng (Korea)",
+                "Anzad",
+                "Arpeggione",
+                "Banhu (China)",
+                "Baritone Violin",
+                "Baryton",
+                "Bazantar (USA)",
+                "Bowed psaltery (USA)",
+                "Cello",
+                "Electric Cello",
+                "Cizhonghu (China)",
+                "Crwth",
+                "Dahu (China)",
+                "Đàn gáo (Vietnam)",
+                "Diyingehu (China)",
+                "Double bass",
+                "Electric Double Bass",
+                "Erhu (China)",
+                "Erxian (China)",
+                "Esraj (India)",
+                "Fiddle",
+                "Gadulka (Bulgaria)",
+                "Gaohu (China)",
+                "Gehu (China)",
+                "Ghaychak (Iran)",
+                "Goje (Mali)",
+                "Gudok (Russia)",
+                "Gunjac (Croatia)"
+        });
+        t.setAdapter(adapter);
     }
 
     @Override

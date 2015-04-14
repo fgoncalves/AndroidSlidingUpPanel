@@ -716,20 +716,14 @@ public class SlidingUpPanelLayout extends ViewGroup {
             int childWidthSpec;
             if (lp.width == LayoutParams.WRAP_CONTENT) {
                 childWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.AT_MOST);
-            } else if (lp.width == LayoutParams.MATCH_PARENT) {
+            } else
                 childWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
-            } else {
-                childWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, MeasureSpec.EXACTLY);
-            }
 
             int childHeightSpec;
             if (lp.height == LayoutParams.WRAP_CONTENT) {
                 childHeightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST);
-            } else if (lp.height == LayoutParams.MATCH_PARENT) {
+            } else
                 childHeightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
-            } else {
-                childHeightSpec = MeasureSpec.makeMeasureSpec(lp.height, MeasureSpec.EXACTLY);
-            }
 
             child.measure(childWidthSpec, childHeightSpec);
 
